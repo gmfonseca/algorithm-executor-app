@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Colors -->
+    <color name="primaryColor">#282F30</color>
+    <color name="primaryColorDark">#000507</color>
+    <color name="primaryColorLight">#505859</color>
+    <color name="secondaryColor">#ECB600</color>
+    <color name="secondaryColorDark">#B58700</color>
+    <color name="secondaryColorLight">#F2C94C</color>
+    <color name="thirdColor">#ECF1F2</color>
+    <color name="thirdColorDark">#BABEBF</color>
+    <color name="thirdColorLight">#FFFFFF</color>
+
+    <!-- Text Colors -->
+    <color name="primaryTextColor">#EDEDED</color>
+    <color name="secondaryTextColor">#232323</color>
+
+</resources>

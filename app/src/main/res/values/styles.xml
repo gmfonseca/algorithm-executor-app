@@ -1,0 +1,21 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Colors -->
+        <item name="primaryColor">@color/primaryColor</item>
+        <item name="primaryDarkColor">@color/primaryColorDark</item>
+        <item name="primaryLightColor">@color/primaryColorLight</item>
+        <item name="secondaryColor">@color/secondaryColor</item>
+        <item name="secondaryDarkColor">@color/secondaryColorDark</item>
+        <item name="secondaryLightColor">@color/secondaryColorLight</item>
+        <item name="thirdColor">@color/thirdColor</item>
+        <item name="thirdDarkColor">@color/thirdColorDark</item>
+        <item name="thirdLightColor">@color/thirdColorLight</item>
+
+        <!-- Text Colors -->
+        <item name="primaryTextColor">@color/primaryTextColor</item>
+        <item name="secondaryTextColor">@color/secondaryTextColor</item>
+    </style>
+
+</resources>
