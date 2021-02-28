@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Algorithm Executor</string>
 
+    <!-- region Main fragment -->
     <string name="section_algorithm_title">Algorithm</string>
     <string name="section_algorithm_option_bubble">Bubble Sort</string>
     <string name="section_algorithm_option_selection">Selection Sort</string>
@@ -26,4 +27,17 @@
     <string name="section_case_option_best">BEST</string>
 
     <string name="button_start_label">Start</string>
+    <!-- endregion -->
+
+    <!-- region Loading fragment -->
+    <string name="loading_settings_title">Settings</string>
+    <string name="loading_label">Processing…</string>
+    <string name="loading_chosen_algorithm">Algorithm:</string>
+    <string name="loading_chosen_method">Method:</string>
+    <string name="loading_chosen_data_amount">Data amount:</string>
+    <string name="loading_chosen_data_type">Data type:</string>
+    <string name="loading_chosen_case">Case:</string>
+
+    <string name="button_cancel_label">Cancel</string>
+    <!-- endregion -->
 </resources>

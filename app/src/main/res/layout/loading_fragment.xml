@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/primaryColor"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/textView_settings_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/loading_settings_title"
+        android:textColor="?attr/primaryTextColor"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_vertical_50p"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".5" />
+
+    <!-- region Chosen algorithm -->
+    <TextView
+        android:id="@+id/textView_chosenAlgorithm_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="2dp"
+        android:text="@string/loading_chosen_algorithm"
+        android:textColor="?attr/primaryTextColor"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toStartOf="@id/guideline_vertical_50p"
+        app:layout_constraintTop_toBottomOf="@id/textView_settings_title" />
+
+    <TextView
+        android:id="@+id/textView_chosenAlgorithm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:textColor="?attr/primaryTextColor"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@id/textView_chosenAlgorithm_label"
+        app:layout_constraintStart_toEndOf="@id/guideline_vertical_50p"
+        app:layout_constraintTop_toTopOf="@id/textView_chosenAlgorithm_label"
+        tools:text="@string/section_algorithm_option_bubble" />
+    <!-- endregion -->
+
+    <!-- region Chosen method -->
+    <TextView
+        android:id="@+id/textView_chosenMethod_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="2dp"
+        android:text="@string/loading_chosen_method"
+        android:textColor="?attr/primaryTextColor"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toStartOf="@id/guideline_vertical_50p"
+        app:layout_constraintTop_toBottomOf="@id/textView_chosenAlgorithm_label" />
+
+    <TextView
+        android:id="@+id/textView_chosenMethod"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:textColor="?attr/primaryTextColor"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@id/textView_chosenMethod_label"
+        app:layout_constraintStart_toEndOf="@id/guideline_vertical_50p"
+        app:layout_constraintTop_toTopOf="@id/textView_chosenMethod_label"
+        tools:text="@string/section_method_option_local" />
+    <!-- endregion -->
+
+    <!-- region Chosen data amount -->
+    <TextView
+        android:id="@+id/textView_chosenDataAmount_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="2dp"
+        android:text="@string/loading_chosen_data_amount"
+        android:textColor="?attr/primaryTextColor"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toStartOf="@id/guideline_vertical_50p"
+        app:layout_constraintTop_toBottomOf="@id/textView_chosenMethod_label" />
+
+    <TextView
+        android:id="@+id/textView_chosenDataAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:textColor="?attr/primaryTextColor"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@id/textView_chosenDataAmount_label"
+        app:layout_constraintStart_toEndOf="@id/guideline_vertical_50p"
+        app:layout_constraintTop_toTopOf="@id/textView_chosenDataAmount_label"
+        tools:text="@string/section_data_amount_option_100k" />
+    <!-- endregion -->
+
+    <!-- region Chosen data type -->
+    <TextView
+        android:id="@+id/textView_chosenDataType_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="2dp"
+        android:text="@string/loading_chosen_data_type"
+        android:textColor="?attr/primaryTextColor"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toStartOf="@id/guideline_vertical_50p"
+        app:layout_constraintTop_toBottomOf="@id/textView_chosenDataAmount_label" />
+
+    <TextView
+        android:id="@+id/textView_chosenDataType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:textColor="?attr/primaryTextColor"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@id/textView_chosenDataType_label"
+        app:layout_constraintStart_toEndOf="@id/guideline_vertical_50p"
+        app:layout_constraintTop_toTopOf="@id/textView_chosenDataType_label"
+        tools:text="@string/section_data_type_option_integer" />
+    <!-- endregion -->
+
+    <!-- region Chosen case -->
+    <TextView
+        android:id="@+id/textView_chosenCase_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="2dp"
+        android:text="@string/loading_chosen_case"
+        android:textColor="?attr/primaryTextColor"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toStartOf="@id/guideline_vertical_50p"
+        app:layout_constraintTop_toBottomOf="@id/textView_chosenDataType_label" />
+
+    <TextView
+        android:id="@+id/textView_chosenCase"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:textColor="?attr/primaryTextColor"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@id/textView_chosenCase_label"
+        app:layout_constraintStart_toEndOf="@id/guideline_vertical_50p"
+        app:layout_constraintTop_toTopOf="@id/textView_chosenCase_label"
+        tools:text="@string/section_case_option_worst" />
+    <!-- endregion -->
+
+    <androidx.core.widget.ContentLoadingProgressBar
+        android:id="@+id/progressBar_loading"
+        style="?android:attr/progressBarStyleSmall"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:indeterminate="true"
+        app:layout_constraintBottom_toBottomOf="@id/button_start"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/textView_chosenCase_label" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/loading_label"
+        android:textColor="?attr/primaryTextColor"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@id/progressBar_loading"
+        app:layout_constraintStart_toStartOf="@id/progressBar_loading"
+        app:layout_constraintTop_toBottomOf="@id/progressBar_loading" />
+
+    <Button
+        android:id="@+id/button_start"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/custom_warn_button"
+        android:text="@string/button_cancel_label"
+        android:textAllCaps="false"
+        android:textColor="?attr/thirdTextColor"
+        android:textSize="32sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

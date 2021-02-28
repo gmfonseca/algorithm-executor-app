@@ -15,5 +15,6 @@
 
     <attr name="primaryTextColor" format="reference" />
     <attr name="secondaryTextColor" format="reference" />
+    <attr name="thirdTextColor" format="reference" />
 
 </resources>

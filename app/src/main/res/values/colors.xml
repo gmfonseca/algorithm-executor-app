@@ -14,5 +14,6 @@
     <!-- Text Colors -->
     <color name="primaryTextColor">#EDEDED</color>
     <color name="secondaryTextColor">#232323</color>
+    <color name="thirdTextColor">#EB5757</color>
 
 </resources>

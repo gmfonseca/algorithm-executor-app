@@ -352,6 +352,7 @@
         android:background="@drawable/custom_button"
         android:text="@string/button_start_label"
         android:textAllCaps="false"
+        android:enabled="true"
         android:textSize="32sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

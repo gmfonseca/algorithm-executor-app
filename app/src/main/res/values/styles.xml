@@ -16,6 +16,7 @@
         <!-- Text Colors -->
         <item name="primaryTextColor">@color/primaryTextColor</item>
         <item name="secondaryTextColor">@color/secondaryTextColor</item>
+        <item name="thirdTextColor">@color/thirdTextColor</item>
     </style>
 
 </resources>
