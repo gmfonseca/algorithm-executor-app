@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">Executor de Algoritmos</string>
+
+    <string name="section_algorithm_title">Algoritmo</string>
+    <string name="section_algorithm_option_bubble">Bubble Sort</string>
+    <string name="section_algorithm_option_selection">Selection Sort</string>
+    <string name="section_algorithm_option_heap">Heap Sort</string>
+
+    <string name="section_method_title">Método</string>
+    <string name="section_method_option_local">Local</string>
+    <string name="section_method_option_rest">REST</string>
+    <string name="section_method_option_grpc">gRPC</string>
+
+    <string name="section_data_amount_title">Volume de dado</string>
+    <string name="section_data_amount_option_10k">10.000</string>
+    <string name="section_data_amount_option_100k">100.000</string>
+    <string name="section_data_amount_option_1m">1.000.000</string>
+
+    <string name="section_data_type_title">Tipo de dado</string>
+    <string name="section_data_type_option_integer">Inteiro</string>
+    <string name="section_data_type_option_float">Flutuante</string>
+    <string name="section_data_type_option_object">Objeto</string>
+
+    <string name="section_case_title">Caso</string>
+    <string name="section_case_option_worst">PIOR</string>
+    <string name="section_case_option_best">MELHOR</string>
+
+    <string name="button_start_label">Iniciar</string>
+</resources>
