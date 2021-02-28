@@ -1,11 +1,11 @@
-package br.com.gmfonseca.gamma.algorithmexecutorapp.ui.main
+package br.com.gmfonseca.tcc.algorithmexecutorapp.ui.main
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import br.com.gmfonseca.gamma.algorithmexecutorapp.R
+import br.com.gmfonseca.tcc.algorithmexecutorapp.R
 import kotlinx.android.synthetic.main.main_fragment.*
 
 class LoadingFragment : Fragment() {

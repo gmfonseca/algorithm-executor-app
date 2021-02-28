@@ -1,8 +1,8 @@
-package br.com.gmfonseca.gamma.algorithmexecutorapp
+package br.com.gmfonseca.tcc.algorithmexecutorapp
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import br.com.gmfonseca.gamma.algorithmexecutorapp.ui.main.MainFragment
+import br.com.gmfonseca.tcc.algorithmexecutorapp.ui.main.MainFragment
 
 class MainActivity : AppCompatActivity() {
 

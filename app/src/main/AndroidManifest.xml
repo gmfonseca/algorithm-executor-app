@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="br.com.gmfonseca.gamma.algorithmexecutorapp">
+    package="br.com.gmfonseca.tcc.algorithmexecutorapp">
 
     <application
         android:icon="@mipmap/ic_launcher"

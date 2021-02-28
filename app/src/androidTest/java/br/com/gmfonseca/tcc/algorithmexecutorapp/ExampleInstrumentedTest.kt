@@ -1,4 +1,4 @@
-package br.com.gmfonseca.gamma.algorithmexecutorapp
+package br.com.gmfonseca.tcc.algorithmexecutorapp
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("br.com.gmfonseca.gamma.algorithmexecutorapp", appContext.packageName)
+        assertEquals("br.com.gmfonseca.tcc.algorithmexecutorapp", appContext.packageName)
     }
 }

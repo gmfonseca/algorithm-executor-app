@@ -1,4 +1,4 @@
-package br.com.gmfonseca.gamma.algorithmexecutorapp
+package br.com.gmfonseca.tcc.algorithmexecutorapp
 
 import org.junit.Test
 
