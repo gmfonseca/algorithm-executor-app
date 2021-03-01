@@ -4,7 +4,6 @@ import br.com.gmfonseca.tcc.algorithmexecutorapp.toProto
 import br.com.gmfonseca.tcc.proto.AlgorithmExecutor
 import java.util.*
 
-
 class AnComparableObject(
     private val uuid: UUID,
     private val intNumber: Int,

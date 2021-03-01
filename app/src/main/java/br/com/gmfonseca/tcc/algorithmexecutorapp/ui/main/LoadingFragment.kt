@@ -5,8 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import br.com.gmfonseca.tcc.algorithmexecutorapp.R
-import kotlinx.android.synthetic.main.main_fragment.*
+import kotlinx.android.synthetic.main.loading_fragment.*
 
 class LoadingFragment : Fragment() {
 
@@ -24,18 +25,28 @@ class LoadingFragment : Fragment() {
         return inflater.inflate(R.layout.loading_fragment, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
 
         viewModel = defaultViewModelProviderFactory.create(MainViewModel::class.java)
 
-        button_start.setOnClickListener {
+        button_cancel.setOnClickListener {
             if (savedInstanceState == null) {
                 requireActivity().supportFragmentManager.beginTransaction()
                     .replace(R.id.container, MainFragment.newInstance())
                     .commit()
             }
         }
+
+        viewModel.loadData().observe(viewLifecycleOwner, Observer {
+            it ?: return@Observer
+
+            if (it == "DONE") {
+                requireActivity().supportFragmentManager.beginTransaction()
+                    .replace(R.id.container, MainFragment.newInstance())
+                    .commit()
+            }
+        })
     }
 
 }
