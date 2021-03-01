@@ -1,6 +1,8 @@
 package br.com.gmfonseca.tcc.algorithmexecutorapp.shared
 
 object Constants {
+    const val GRPC_SERVER = "localhost:9090"
+
     object IntegerData {
         const val TABLE = "integer_data"
         const val CONTENT = "integer_data_content"
