@@ -8,7 +8,7 @@ import br.com.gmfonseca.tcc.proto.AlgorithmExecutorServiceGrpc
 import io.grpc.ManagedChannelBuilder
 
 @Suppress("UNCHECKED_CAST")
-object AlgorithmExecutorService {
+object AlgorithmExecutorServiceGrpc {
 
     fun executeBubbleSortAlgorithm(data: List<Any>): List<Any>? {
         return try {
