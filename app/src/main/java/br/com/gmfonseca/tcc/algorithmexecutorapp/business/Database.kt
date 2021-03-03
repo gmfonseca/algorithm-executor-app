@@ -41,7 +41,7 @@ abstract class Database : RoomDatabase() {
             val instance = INSTANCE ?: Room.databaseBuilder(
                 context,
                 Database::class.java,
-                ""
+                "database.db"
             ).createFromAsset("prepopulated_database.db").build()
 
             if (INSTANCE == null) {

@@ -58,6 +58,7 @@
                     android:textSize="16sp" />
 
                 <RadioButton
+                    android:id="@+id/radioButton_algorithm_bubble"
                     android:layout_width="wrap_content"
                     android:layout_height="18dp"
                     android:layout_marginBottom="12dp"
@@ -70,6 +71,7 @@
                     tools:checked="true" />
 
                 <RadioButton
+                    android:id="@+id/radioButton_algorithm_selection"
                     android:layout_width="wrap_content"
                     android:layout_height="18dp"
                     android:layout_marginBottom="12dp"
@@ -82,6 +84,7 @@
                     tools:checked="false" />
 
                 <RadioButton
+                    android:id="@+id/radioButton_algorithm_heap"
                     android:layout_width="wrap_content"
                     android:layout_height="18dp"
                     android:layout_marginBottom="12dp"
@@ -122,6 +125,7 @@
                     android:textSize="16sp" />
 
                 <RadioButton
+                    android:id="@+id/radioButton_method_local"
                     android:layout_width="wrap_content"
                     android:layout_height="18dp"
                     android:layout_marginBottom="12dp"
@@ -134,6 +138,7 @@
                     tools:checked="true" />
 
                 <RadioButton
+                    android:id="@+id/radioButton_method_rest"
                     android:layout_width="wrap_content"
                     android:layout_height="18dp"
                     android:layout_marginBottom="12dp"
@@ -146,6 +151,7 @@
                     tools:checked="true" />
 
                 <RadioButton
+                    android:id="@+id/radioButton_method_grpc"
                     android:layout_width="wrap_content"
                     android:layout_height="18dp"
                     android:layout_marginBottom="12dp"
@@ -186,6 +192,7 @@
                     android:textSize="16sp" />
 
                 <RadioButton
+                    android:id="@+id/radioButton_amount_10k"
                     android:layout_width="wrap_content"
                     android:layout_height="18dp"
                     android:layout_marginBottom="12dp"
@@ -199,6 +206,7 @@
                     tools:text="10.000" />
 
                 <RadioButton
+                    android:id="@+id/radioButton_amount_100k"
                     android:layout_width="wrap_content"
                     android:layout_height="18dp"
                     android:layout_marginBottom="12dp"
@@ -212,6 +220,7 @@
                     tools:text="100.000" />
 
                 <RadioButton
+                    android:id="@+id/radioButton_amount_1m"
                     android:layout_width="wrap_content"
                     android:layout_height="18dp"
                     android:layout_marginBottom="12dp"
@@ -253,6 +262,7 @@
                     android:textSize="16sp" />
 
                 <RadioButton
+                    android:id="@+id/radioButton_type_int"
                     android:layout_width="wrap_content"
                     android:layout_height="18dp"
                     android:layout_marginBottom="12dp"
@@ -265,6 +275,7 @@
                     tools:checked="true" />
 
                 <RadioButton
+                    android:id="@+id/radioButton_type_float"
                     android:layout_width="wrap_content"
                     android:layout_height="18dp"
                     android:layout_marginBottom="12dp"
@@ -277,6 +288,7 @@
                     tools:checked="true" />
 
                 <RadioButton
+                    android:id="@+id/radioButton_type_object"
                     android:layout_width="wrap_content"
                     android:layout_height="18dp"
                     android:layout_marginBottom="12dp"
@@ -318,6 +330,7 @@
                     android:textSize="16sp" />
 
                 <RadioButton
+                    android:id="@+id/radioButton_case_worst"
                     android:layout_width="wrap_content"
                     android:layout_height="18dp"
                     android:layout_marginBottom="12dp"
@@ -330,6 +343,7 @@
                     tools:checked="true" />
 
                 <RadioButton
+                    android:id="@+id/radioButton_case_best"
                     android:layout_width="wrap_content"
                     android:layout_height="18dp"
                     android:layout_marginBottom="12dp"
@@ -350,9 +364,9 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@drawable/custom_button"
+        android:enabled="true"
         android:text="@string/button_start_label"
         android:textAllCaps="false"
-        android:enabled="true"
         android:textSize="32sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
