@@ -1,8 +1,9 @@
 package br.com.gmfonseca.tcc.algorithmexecutorapp.shared
 
 object Constants {
-    const val GRPC_SERVER = "localhost:9090"
-    const val REST_SERVER = "localhost:8080"
+    private const val SERVICE_URL = "192.168.0.100"
+    const val GRPC_SERVER = "$SERVICE_URL:9090"
+    const val REST_SERVER = "http://$SERVICE_URL:8080/"
 
     object IntegerData {
         const val TABLE = "integer_data"

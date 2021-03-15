@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+option java_package = "br.com.gmfonseca.tcc.proto";
+
+service AlgorithmExecutorService {
+  rpc ExecuteBubbleSortAlgorithm(ExecuteSortAlgorithmRequest) returns (ExecuteAlgorithmResult) {}
+  rpc ExecuteHeapSortAlgorithm(ExecuteSortAlgorithmRequest) returns (ExecuteAlgorithmResult) {}
+  rpc ExecuteSelectionSortAlgorithm(ExecuteSortAlgorithmRequest) returns (ExecuteAlgorithmResult) {}
+}
+
+message ExecuteSortAlgorithmRequest {
+  oneof data {
+    IntegerList integerList = 1;
+    FloatList floatList = 2;
+    ObjectList objectList = 3;
+  }
+}
+
+message ExecuteAlgorithmResult {
+  oneof data {
+    IntegerList integerList = 1;
+    FloatList floatList = 2;
+    ObjectList objectList = 3;
+  }
+}
+
+enum DataType {
+  INTEGER = 0;
+  FLOAT = 1;
+  OBJECT = 2;
+}
+
+message IntegerList {
+  repeated int32 content = 1;
+}
+
+message FloatList {
+  repeated float content = 1;
+}
+
+message ObjectList {
+  repeated AnObject content = 1;
+}
+
+message AnObject {
+  UUID uuid = 1;
+  int32 intNumber = 2;
+  float floatNumber = 3;
+}
+
+message UUID {
+  int64 mostSigBits = 1;
+  int64 leastSigBits = 2;
+}

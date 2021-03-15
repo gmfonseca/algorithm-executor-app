@@ -1,2 +1,3 @@
+include ':proto'
 rootProject.name='algorithm-executor-app'
 include ':app'

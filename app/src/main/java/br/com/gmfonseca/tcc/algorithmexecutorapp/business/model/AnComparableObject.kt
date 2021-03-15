@@ -1,13 +1,15 @@
 package br.com.gmfonseca.tcc.algorithmexecutorapp.business.model
 
-import br.com.gmfonseca.tcc.algorithmexecutorapp.toProto
+import br.com.gmfonseca.tcc.algorithmexecutorapp.shared.toProto
 import br.com.gmfonseca.tcc.proto.AlgorithmExecutor
+import com.google.gson.Gson
+import com.google.gson.annotations.SerializedName
 import java.util.*
 
-class AnComparableObject(
-    private val uuid: UUID,
-    private val intNumber: Int,
-    private val floatNumber: Float
+data class AnComparableObject(
+    @SerializedName("uuid") private val uuid: UUID,
+    @SerializedName("intNumber") private val intNumber: Int,
+    @SerializedName("floatNumber") private val floatNumber: Float
 ) : Comparable<AnComparableObject> {
     override fun compareTo(other: AnComparableObject): Int {
         return uuid.compareTo(other.uuid)
@@ -18,4 +20,6 @@ class AnComparableObject(
         .setIntNumber(intNumber)
         .setUuid(uuid.toProto())
         .build()
+
+    override fun toString(): String = Gson().toJson(this)
 }
