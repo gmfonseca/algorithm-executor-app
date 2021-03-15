@@ -220,14 +220,14 @@
                     tools:text="100.000" />
 
                 <RadioButton
-                    android:id="@+id/radioButton_amount_250k"
+                    android:id="@+id/radioButton_amount_50k"
                     android:layout_width="wrap_content"
                     android:layout_height="18dp"
                     android:layout_marginBottom="12dp"
                     android:button="@drawable/custom_radio_button"
                     android:color="?attr/secondaryColor"
                     android:gravity="top"
-                    android:text="@string/section_data_amount_option_1m"
+                    android:text="@string/section_data_amount_option_50k"
                     android:textColor="?attr/primaryTextColor"
                     android:textSize="12sp"
                     tools:checked="false"

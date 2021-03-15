@@ -12,7 +12,7 @@ data class AnComparableObject(
     @SerializedName("floatNumber") private val floatNumber: Float
 ) : Comparable<AnComparableObject> {
     override fun compareTo(other: AnComparableObject): Int {
-        return uuid.compareTo(other.uuid)
+        return intNumber.compareTo(other.intNumber)
     }
 
     fun toAnObject(): AlgorithmExecutor.AnObject = AlgorithmExecutor.AnObject.newBuilder()

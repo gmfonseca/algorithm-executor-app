@@ -93,7 +93,7 @@ class MainFragment : Fragment() {
         radioGroup_dataAmount.setOnCheckedChangeListener { _, checkedId ->
             val (dataAmount, id) = when (checkedId) {
                 radioButton_amount_100k.id -> 100_000 to radioButton_amount_100k.id
-                radioButton_amount_250k.id -> 200_000 to radioButton_amount_250k.id
+                radioButton_amount_50k.id -> 50_000 to radioButton_amount_50k.id
                 else -> 10_000 to radioButton_amount_10k.id
             }
 
