@@ -18,8 +18,6 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import okhttp3.MediaType
 import okhttp3.RequestBody
-import okhttp3.ResponseBody
-import retrofit2.Call
 import java.util.*
 import java.util.concurrent.TimeUnit
 import kotlin.math.abs
@@ -35,7 +33,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     var dataType = DataType.INTEGER
 
     var case = Case.BEST
-    val factor: Int; get() = if (case == Case.BEST) 0 else dataAmount
+    private val factor: Int; get() = if (case == Case.BEST) 0 else dataAmount
 
     var algorithmId: Int? = null
     var methodId: Int? = null
@@ -43,19 +41,18 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     var dataTypeId: Int? = null
     var caseId: Int? = null
 
-    private var isCancelled = false
-    private var call: Call<ResponseBody>? = null
-    private lateinit var job: Job
+    var startBattery: Double = -1.0; private set
+    var startBatteryPercent: Float = -1.0f; private set
 
     private var startTime = 0L
-    private val spentTime: Long; get() = System.nanoTime() - startTime
-    val seconds; get() = TimeUnit.NANOSECONDS.toMillis(spentTime)
+    val ms; get() = TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - startTime)
 
-    fun dispatch(callback: Callback): LiveData<String?> {
-        val mutableLiveData = MutableLiveData<String?>(null)
-        isCancelled = false
+    fun dispatch(batteryPct: Double, batteryPercent: Float): LiveData<Boolean> {
+        val mutableLiveData = MutableLiveData<Boolean>(null)
+        startBattery = batteryPct
+        startBatteryPercent = batteryPercent
 
-        job = ioScope.launch {
+        ioScope.launch {
             try {
                 val data = when (dataType) {
                     DataType.INTEGER -> MutableList(dataAmount) { abs(factor - it) }
@@ -69,36 +66,23 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 startTime = System.nanoTime()
 
                 when (method) {
-                    Method.LOCAL -> runLocal(data, callback)
-                    Method.REST -> runRest(data, dataType, callback)
-                    Method.GRPC -> runGRpc(data, callback)
+                    Method.LOCAL -> runLocal(data, mutableLiveData)
+                    Method.REST -> runRest(data, dataType, mutableLiveData)
+                    Method.GRPC -> runGRpc(data, mutableLiveData)
                 }
             } catch (t: Throwable) {
                 t.printStackTrace()
-                mutableLiveData.postValue("FAIL")
+                mutableLiveData.postValue(false)
             }
         }
 
         return mutableLiveData
     }
 
-    fun cancel() {
-        if (!isCancelled) {
-            isCancelled = true
-
-            call?.run { if (!isCanceled) cancel() }
-
-            if (job.isActive) {
-                job.cancel()
-            }
-            System.gc()
-        }
-    }
-
     @Suppress("UNCHECKED_CAST")
     private fun <T : Comparable<*>> runLocal(
         items: MutableList<T>,
-        callback: Callback
+        liveData: MutableLiveData<Boolean>
     ) {
         when (this.algorithm) {
             Algorithm.BUBBLE -> {
@@ -124,17 +108,15 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             }
         }
 
-        ioScope.launch(Dispatchers.Main) {
-            callback.onFinish(success = true)
-        }
+        liveData.postValue(true)
     }
 
     private fun <T : Any> runRest(
         items: List<T>,
         type: DataType,
-        callback: Callback
+        liveData: MutableLiveData<Boolean>
     ) {
-        call = when (algorithm) {
+        val result = when (algorithm) {
             Algorithm.BUBBLE -> restService.executeBubbleSort(
                 body = RequestBody.create(
                     MediaType.parse("application/json"),
@@ -153,12 +135,14 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                     gson.toJson(SortDataDto(type = type, elements = items))
                 )
             )
-        }.also { it.enqueue(callback) }
+        }.execute().body()
+
+        liveData.postValue(result != null)
     }
 
     private fun <T : Any> runGRpc(
         items: List<T>,
-        callback: Callback
+        liveData: MutableLiveData<Boolean>
     ) {
         val result = when (this.algorithm) {
             Algorithm.BUBBLE -> AlgorithmExecutorServiceGrpc.executeBubbleSortAlgorithm(items)
@@ -166,8 +150,6 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             Algorithm.SELECTION -> AlgorithmExecutorServiceGrpc.executeSelectionSortAlgorithm(items)
         }
 
-        ioScope.launch(Dispatchers.Main) {
-            callback.onFinish(success = result != null)
-        }
+        liveData.postValue(result != null)
     }
 }

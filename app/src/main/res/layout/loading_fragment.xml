@@ -155,39 +155,102 @@
         tools:text="@string/section_case_option_worst" />
     <!-- endregion -->
 
-    <androidx.core.widget.ContentLoadingProgressBar
-        android:id="@+id/progressBar_loading"
-        style="?android:attr/progressBarStyleSmall"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:indeterminate="true"
-        app:layout_constraintBottom_toBottomOf="@id/button_cancel"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView_chosenCase_label" />
-
-    <TextView
+    <LinearLayout
+        android:id="@+id/loadingBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/loading_label"
-        android:textColor="?attr/primaryTextColor"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@id/progressBar_loading"
-        app:layout_constraintStart_toStartOf="@id/progressBar_loading"
-        app:layout_constraintTop_toBottomOf="@id/progressBar_loading" />
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/button_back"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView_chosenCase_label">
+
+        <androidx.core.widget.ContentLoadingProgressBar
+            android:id="@+id/progressBar_loading"
+            style="?android:attr/progressBarStyleSmall"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:indeterminate="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/loading_label"
+            android:textColor="?attr/primaryTextColor"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/resultSection"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/button_back"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView_chosenCase_label">
+
+        <TextView
+            android:id="@+id/textView_resultTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/loading_result_title"
+            android:textColor="?attr/primaryTextColor"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView_resultBatteryPercent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/loading_result_battery_percent"
+            android:layout_marginTop="8dp"
+            android:textColor="?attr/primaryTextColor"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@id/textView_resultTitle"
+            app:layout_constraintStart_toStartOf="@id/textView_resultTitle"
+            app:layout_constraintTop_toBottomOf="@id/textView_resultTitle" />
+
+        <TextView
+            android:id="@+id/textView_resultBattery"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/loading_result_battery"
+            android:layout_marginTop="8dp"
+            android:textColor="?attr/primaryTextColor"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@id/textView_resultBatteryPercent"
+            app:layout_constraintStart_toStartOf="@id/textView_resultBatteryPercent"
+            app:layout_constraintTop_toBottomOf="@id/textView_resultBatteryPercent" />
+
+        <TextView
+            android:id="@+id/textView_resultSpentTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/loading_result_battery"
+            android:layout_marginTop="8dp"
+            android:textColor="?attr/primaryTextColor"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@id/textView_resultBattery"
+            app:layout_constraintStart_toStartOf="@id/textView_resultBattery"
+            app:layout_constraintTop_toBottomOf="@id/textView_resultBattery" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
-        android:id="@+id/button_cancel"
+        android:id="@+id/button_back"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
         android:background="@drawable/custom_warn_button"
-        android:text="@string/button_cancel_label"
+        android:text="@string/button_back_label"
         android:textAllCaps="false"
         android:textColor="?attr/thirdTextColor"
         android:textSize="32sp"
-        android:visibility="gone"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
