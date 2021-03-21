@@ -1,9 +1,9 @@
 package br.com.gmfonseca.tcc.algorithmexecutorapp.shared
 
 object Constants {
-    private const val SERVICE_URL = "192.168.0.102"
+    private const val SERVICE_URL = "tcc-algorithm-executor-service.herokuapp.com"
     const val GRPC_SERVER = "$SERVICE_URL:9090"
-    const val REST_SERVER = "http://$SERVICE_URL:8080/"
+    const val REST_SERVER = "http://$SERVICE_URL/"
 
     object IntegerData {
         const val TABLE = "integer_data"
