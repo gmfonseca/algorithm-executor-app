@@ -1,9 +1,8 @@
 package br.com.gmfonseca.tcc.algorithmexecutorapp.ui.main
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import br.com.gmfonseca.tcc.algorithmexecutorapp.R
@@ -13,21 +12,9 @@ import br.com.gmfonseca.tcc.algorithmexecutorapp.business.model.DataType
 import br.com.gmfonseca.tcc.algorithmexecutorapp.business.model.Method
 import kotlinx.android.synthetic.main.main_fragment.*
 
-class MainFragment : Fragment() {
-
-    companion object {
-        fun newInstance() = MainFragment()
-    }
+class MainFragment : Fragment(R.layout.main_fragment) {
 
     private lateinit var viewModel: MainViewModel
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        return inflater.inflate(R.layout.main_fragment, container, false)
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -37,13 +24,24 @@ class MainFragment : Fragment() {
         setupListeners()
         handleChecked()
 
-        button_start.setOnClickListener {
-            if (savedInstanceState == null) {
-                requireActivity().supportFragmentManager.beginTransaction()
-                    .replace(R.id.container, LoadingFragment.newInstance())
-                    .commit()
-            }
+        if (viewModel.executionNumber in 2..5) {
+            dispatchExecution()
         }
+
+        button_start.text = getString(R.string.button_start_label, viewModel.executionNumber)
+        button_start.setOnClickListener { dispatchExecution() }
+    }
+
+    private fun dispatchExecution() {
+        Toast.makeText(
+            context,
+            "Dispatching execution ${viewModel.executionNumber}",
+            Toast.LENGTH_LONG
+        ).show()
+        viewModel.executionNumber++
+        requireActivity().supportFragmentManager.beginTransaction()
+            .replace(R.id.container, LoadingFragment.newInstance())
+            .commit()
     }
 
     private fun setupListeners() {
@@ -54,8 +52,11 @@ class MainFragment : Fragment() {
                 else -> Algorithm.BUBBLE to radioButton_algorithm_bubble.id
             }
 
-            viewModel.algorithm = algorithm
-            viewModel.algorithmId = id
+            if (viewModel.algorithmId != id) {
+                viewModel.algorithm = algorithm
+                viewModel.algorithmId = id
+                viewModel.executionNumber = 1
+            }
         }
 
         radioGroup_method.setOnCheckedChangeListener { _, checkedId ->
@@ -65,8 +66,11 @@ class MainFragment : Fragment() {
                 else -> Method.LOCAL to radioButton_method_local.id
             }
 
-            viewModel.method = method
-            viewModel.methodId = id
+            if (viewModel.methodId != id) {
+                viewModel.method = method
+                viewModel.methodId = id
+                viewModel.executionNumber = 1
+            }
         }
 
         radioGroup_dataType.setOnCheckedChangeListener { _, checkedId ->
@@ -76,8 +80,11 @@ class MainFragment : Fragment() {
                 else -> DataType.INTEGER to radioButton_type_int.id
             }
 
-            viewModel.dataType = dataType
-            viewModel.dataTypeId = id
+            if (viewModel.dataTypeId != id) {
+                viewModel.dataType = dataType
+                viewModel.dataTypeId = id
+                viewModel.executionNumber = 1
+            }
         }
 
         radioGroup_case.setOnCheckedChangeListener { _, checkedId ->
@@ -86,8 +93,11 @@ class MainFragment : Fragment() {
                 else -> Case.BEST to radioButton_case_best.id
             }
 
-            viewModel.case = case
-            viewModel.caseId = id
+            if (viewModel.caseId != id) {
+                viewModel.case = case
+                viewModel.caseId = id
+                viewModel.executionNumber = 1
+            }
         }
 
         radioGroup_dataAmount.setOnCheckedChangeListener { _, checkedId ->
@@ -97,8 +107,11 @@ class MainFragment : Fragment() {
                 else -> 10_000 to radioButton_amount_10k.id
             }
 
-            viewModel.dataAmount = dataAmount
-            viewModel.dataAmountId = id
+            if (viewModel.dataAmountId != id) {
+                viewModel.dataAmount = dataAmount
+                viewModel.dataAmountId = id
+                viewModel.executionNumber = 1
+            }
         }
     }
 
@@ -108,5 +121,9 @@ class MainFragment : Fragment() {
         radioGroup_dataAmount.check(viewModel.dataAmountId ?: radioButton_amount_10k.id)
         radioGroup_dataType.check(viewModel.dataTypeId ?: radioButton_type_int.id)
         radioGroup_case.check(viewModel.caseId ?: radioButton_case_best.id)
+    }
+
+    companion object {
+        fun newInstance() = MainFragment()
     }
 }

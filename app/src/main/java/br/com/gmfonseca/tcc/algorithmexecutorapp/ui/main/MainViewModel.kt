@@ -63,6 +63,8 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     private val _executionStatus = MutableLiveData<Status>(null)
     val executionStatus: LiveData<Status>; get() = _executionStatus
 
+    var executionNumber: Int = 1
+
     fun clear() {
         executionCount = 0
         initialBatteryPercent = -1f

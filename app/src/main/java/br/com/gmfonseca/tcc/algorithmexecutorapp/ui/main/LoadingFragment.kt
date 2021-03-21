@@ -40,6 +40,8 @@ class LoadingFragment : Fragment(R.layout.loading_fragment) {
         textView_chosenDataAmount.text = viewModel.dataAmount.toString()
         textView_chosenDataType.text = viewModel.dataType.name
         textView_chosenCase.text = viewModel.case.name
+        textView_loadingLabel.text =
+            getString(R.string.loading_label, viewModel.executionNumber - 1)
 
         viewModel.executionStatus.observe(viewLifecycleOwner, Observer {
             it ?: return@Observer
@@ -53,6 +55,10 @@ class LoadingFragment : Fragment(R.layout.loading_fragment) {
                 MainViewModel.Status.DONE -> {
                     handleLoading(false)
                     Toast.makeText(context, "Successfully saved csv", Toast.LENGTH_SHORT).show()
+
+                    if (viewModel.executionNumber in 2..5) {
+                        onFinish()
+                    }
                 }
                 MainViewModel.Status.ERROR -> onFinish()
             }

@@ -175,6 +175,7 @@
             android:indeterminate="true" />
 
         <TextView
+            android:id="@+id/textView_loadingLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"

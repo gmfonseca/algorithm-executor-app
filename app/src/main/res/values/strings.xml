@@ -26,12 +26,12 @@
     <string name="section_case_option_worst">WORST</string>
     <string name="section_case_option_best">BEST</string>
 
-    <string name="button_start_label">Start</string>
+    <string name="button_start_label">Start [%d]</string>
     <!-- endregion -->
 
     <!-- region Loading fragment -->
     <string name="loading_settings_title">Settings</string>
-    <string name="loading_label">Processing…</string>
+    <string name="loading_label">[%d] Processing…</string>
     <string name="loading_chosen_algorithm">Algorithm:</string>
     <string name="loading_chosen_method">Method:</string>
     <string name="loading_chosen_data_amount">Data amount:</string>
