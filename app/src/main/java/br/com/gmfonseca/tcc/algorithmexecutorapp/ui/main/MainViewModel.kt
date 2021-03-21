@@ -1,11 +1,13 @@
 package br.com.gmfonseca.tcc.algorithmexecutorapp.ui.main
 
 import android.app.Application
+import android.content.Context
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import br.com.gmfonseca.tcc.algorithmexecutorapp.business.dto.SortDataDto
 import br.com.gmfonseca.tcc.algorithmexecutorapp.business.model.*
+import br.com.gmfonseca.tcc.algorithmexecutorapp.business.service.FileWriter
 import br.com.gmfonseca.tcc.algorithmexecutorapp.business.service.grpc.AlgorithmExecutorServiceGrpc
 import br.com.gmfonseca.tcc.algorithmexecutorapp.business.service.rest.AlgorithmExecutorServiceRest
 import br.com.gmfonseca.tcc.algorithms.BubbleSortAlgorithm
@@ -58,16 +60,33 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         }
     val ms; get() = TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - startTime)
 
-    private val _executionStatus = MutableLiveData<Boolean>(null)
-    val executionStatus: LiveData<Boolean>; get() = _executionStatus
+    private val _executionStatus = MutableLiveData<Status>(null)
+    val executionStatus: LiveData<Status>; get() = _executionStatus
 
     fun clear() {
         executionCount = 0
         initialBatteryPercent = -1f
         startTime = 0
+        _executionStatus.value = null
     }
 
-    fun dispatch(batteryPercent: Float): LiveData<Boolean> {
+    fun writeCsv(context: Context, batteryPercent: Float) = ioScope.launch {
+        _executionStatus.postValue(Status.WRITING_CSV)
+        val data = FileWriter.CsvOutput(
+                algorithm = algorithm.readableName,
+                case = case.readableName,
+                type = dataType.readableName,
+                volume = dataAmount,
+                battery = batteryPercent,
+                spentTime = ms,
+                times = executionCount
+            )
+
+        FileWriter.writeCsv(context, data)
+        _executionStatus.postValue(Status.DONE)
+    }
+
+    fun dispatch(batteryPercent: Float): LiveData<Status> {
         initialBatteryPercent = batteryPercent
         executionCount++
 
@@ -91,7 +110,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 }
             } catch (t: Throwable) {
                 t.printStackTrace()
-                _executionStatus.postValue(false)
+                _executionStatus.postValue(Status.ERROR)
             }
         }
 
@@ -101,7 +120,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     @Suppress("UNCHECKED_CAST")
     private fun <T : Comparable<*>> runLocal(
         items: MutableList<T>,
-        liveData: MutableLiveData<Boolean>
+        liveData: MutableLiveData<Status>
     ) {
         when (this.algorithm) {
             Algorithm.BUBBLE -> {
@@ -127,13 +146,13 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             }
         }
 
-        liveData.postValue(true)
+        liveData.postValue(Status.SUCCESS)
     }
 
     private fun <T : Any> runRest(
         items: List<T>,
         type: DataType,
-        liveData: MutableLiveData<Boolean>
+        liveData: MutableLiveData<Status>
     ) {
         val result = when (algorithm) {
             Algorithm.BUBBLE -> restService.executeBubbleSort(
@@ -156,12 +175,13 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             )
         }.execute().body()
 
-        liveData.postValue(result != null)
+        val status = result?.let { Status.SUCCESS } ?: Status.ERROR
+        liveData.postValue(status)
     }
 
     private fun <T : Any> runGRpc(
         items: List<T>,
-        liveData: MutableLiveData<Boolean>
+        liveData: MutableLiveData<Status>
     ) {
         val result = when (this.algorithm) {
             Algorithm.BUBBLE -> AlgorithmExecutorServiceGrpc.executeBubbleSortAlgorithm(items)
@@ -169,6 +189,14 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             Algorithm.SELECTION -> AlgorithmExecutorServiceGrpc.executeSelectionSortAlgorithm(items)
         }
 
-        liveData.postValue(result != null)
+        val status = result?.let { Status.SUCCESS } ?: Status.ERROR
+        liveData.postValue(status)
+    }
+
+    enum class Status {
+        SUCCESS,
+        WRITING_CSV,
+        ERROR,
+        DONE
     }
 }

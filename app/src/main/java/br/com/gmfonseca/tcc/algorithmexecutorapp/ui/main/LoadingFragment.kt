@@ -4,6 +4,7 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.os.BatteryManager
 import android.os.Bundle
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -43,10 +44,17 @@ class LoadingFragment : Fragment(R.layout.loading_fragment) {
         viewModel.executionStatus.observe(viewLifecycleOwner, Observer {
             it ?: return@Observer
 
-            if (it) {
-                handleResult()
-            } else {
-                onFinish()
+            when (it) {
+                MainViewModel.Status.SUCCESS -> handleResult()
+                MainViewModel.Status.WRITING_CSV -> {
+                    handleLoading(true)
+                    Toast.makeText(context, "Saving csv", Toast.LENGTH_SHORT).show()
+                }
+                MainViewModel.Status.DONE -> {
+                    handleLoading(false)
+                    Toast.makeText(context, "Successfully saved csv", Toast.LENGTH_SHORT).show()
+                }
+                MainViewModel.Status.ERROR -> onFinish()
             }
         })
 
@@ -54,8 +62,15 @@ class LoadingFragment : Fragment(R.layout.loading_fragment) {
         startExecution()
     }
 
+    private fun handleLoading(isLoading: Boolean) {
+        resultSection.isVisible = !isLoading
+        button_back.isVisible = !isLoading
+        loadingBar.isVisible = isLoading
+    }
+
     private fun handleResult() {
-        val batteryPercentResult = (viewModel.initialBatteryPercent - batteryPercent) / viewModel.executionCount
+        val batteryPercentResult =
+            (viewModel.initialBatteryPercent - batteryPercent) / viewModel.executionCount
 
         if (batteryPercentResult != 0.0f) { // Check if it consumed enough battery
             textView_resultExecutionCount.text =
@@ -63,9 +78,8 @@ class LoadingFragment : Fragment(R.layout.loading_fragment) {
             textView_resultBatteryPercent.text =
                 getString(R.string.loading_result_battery_percent, batteryPercentResult)
             textView_resultSpentTime.text = getString(R.string.loading_result_time, viewModel.ms)
-            resultSection.isVisible = true
-            button_back.isVisible = true
-            loadingBar.isVisible = false
+
+            viewModel.writeCsv(requireContext(), batteryPercentResult)
         } else {
             startExecution()
         }
