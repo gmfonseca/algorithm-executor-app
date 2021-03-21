@@ -41,16 +41,35 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     var dataTypeId: Int? = null
     var caseId: Int? = null
 
-    var startBattery: Double = -1.0; private set
-    var startBatteryPercent: Float = -1.0f; private set
+    var executionCount: Int = 0; private set
+    var initialBatteryPercent: Float = -1.0f
+        private set(value) {
+            // Change initial battery value only for first execution
+            if (executionCount == 0) field = value
+        }
 
     private var startTime = 0L
+        set(value) {
+            field = if (field == 0L) {
+                value
+            } else {
+                (startTime + value) / 2
+            }
+        }
     val ms; get() = TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - startTime)
 
-    fun dispatch(batteryPct: Double, batteryPercent: Float): LiveData<Boolean> {
-        val mutableLiveData = MutableLiveData<Boolean>(null)
-        startBattery = batteryPct
-        startBatteryPercent = batteryPercent
+    private val _executionStatus = MutableLiveData<Boolean>(null)
+    val executionStatus: LiveData<Boolean>; get() = _executionStatus
+
+    fun clear() {
+        executionCount = 0
+        initialBatteryPercent = -1f
+        startTime = 0
+    }
+
+    fun dispatch(batteryPercent: Float): LiveData<Boolean> {
+        initialBatteryPercent = batteryPercent
+        executionCount++
 
         ioScope.launch {
             try {
@@ -66,17 +85,17 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 startTime = System.nanoTime()
 
                 when (method) {
-                    Method.LOCAL -> runLocal(data, mutableLiveData)
-                    Method.REST -> runRest(data, dataType, mutableLiveData)
-                    Method.GRPC -> runGRpc(data, mutableLiveData)
+                    Method.LOCAL -> runLocal(data, _executionStatus)
+                    Method.REST -> runRest(data, dataType, _executionStatus)
+                    Method.GRPC -> runGRpc(data, _executionStatus)
                 }
             } catch (t: Throwable) {
                 t.printStackTrace()
-                mutableLiveData.postValue(false)
+                _executionStatus.postValue(false)
             }
         }
 
-        return mutableLiveData
+        return _executionStatus
     }
 
     @Suppress("UNCHECKED_CAST")

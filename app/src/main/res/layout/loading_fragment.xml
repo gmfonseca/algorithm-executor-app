@@ -204,10 +204,10 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView_resultBatteryPercent"
+            android:id="@+id/textView_resultExecutionCount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/loading_result_battery_percent"
+            android:text="@string/loading_result_number_executions"
             android:layout_marginTop="8dp"
             android:textColor="?attr/primaryTextColor"
             android:textSize="16sp"
@@ -216,28 +216,28 @@
             app:layout_constraintTop_toBottomOf="@id/textView_resultTitle" />
 
         <TextView
-            android:id="@+id/textView_resultBattery"
+            android:id="@+id/textView_resultBatteryPercent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/loading_result_battery"
+            android:text="@string/loading_result_battery_percent"
+            android:layout_marginTop="8dp"
+            android:textColor="?attr/primaryTextColor"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@id/textView_resultExecutionCount"
+            app:layout_constraintStart_toStartOf="@id/textView_resultExecutionCount"
+            app:layout_constraintTop_toBottomOf="@id/textView_resultExecutionCount" />
+
+        <TextView
+            android:id="@+id/textView_resultSpentTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/loading_result_time"
             android:layout_marginTop="8dp"
             android:textColor="?attr/primaryTextColor"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="@id/textView_resultBatteryPercent"
             app:layout_constraintStart_toStartOf="@id/textView_resultBatteryPercent"
             app:layout_constraintTop_toBottomOf="@id/textView_resultBatteryPercent" />
-
-        <TextView
-            android:id="@+id/textView_resultSpentTime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/loading_result_battery"
-            android:layout_marginTop="8dp"
-            android:textColor="?attr/primaryTextColor"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="@id/textView_resultBattery"
-            app:layout_constraintStart_toStartOf="@id/textView_resultBattery"
-            app:layout_constraintTop_toBottomOf="@id/textView_resultBattery" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

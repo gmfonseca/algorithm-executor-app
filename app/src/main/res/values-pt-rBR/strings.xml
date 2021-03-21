@@ -38,9 +38,9 @@
     <string name="loading_chosen_data_type">Tipo de dado: %s</string>
     <string name="loading_chosen_case">Caso: %s</string>
 
-    <string name="loading_result_title">Resultado</string>
+    <string name="loading_result_title">Resultado por execução</string>
+    <string name="loading_result_number_executions">Executado %s vez(es)</string>
     <string name="loading_result_battery_percent">Bateria consumida: %s %%</string>
-    <string name="loading_result_battery">Bateria consumida: %s mAh</string>
     <string name="loading_result_time">Tempo gasto: %s ms</string>
 
     <string name="button_back_label">Voltar</string>

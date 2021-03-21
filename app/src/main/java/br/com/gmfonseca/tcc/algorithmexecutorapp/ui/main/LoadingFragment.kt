@@ -1,6 +1,5 @@
 package br.com.gmfonseca.tcc.algorithmexecutorapp.ui.main
 
-import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.os.BatteryManager
@@ -11,7 +10,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import br.com.gmfonseca.tcc.algorithmexecutorapp.R
 import kotlinx.android.synthetic.main.loading_fragment.*
-
 
 class LoadingFragment : Fragment(R.layout.loading_fragment) {
     private val batteryStatus: Intent?
@@ -25,8 +23,6 @@ class LoadingFragment : Fragment(R.layout.loading_fragment) {
             val scale: Int = intent.getIntExtra(BatteryManager.EXTRA_SCALE, -1)
             level / scale.toFloat()
         } ?: -1f
-
-    private val batteryMilliAmp; get() = getBatteryCapacity() * batteryPercent
 
     private lateinit var viewModel: MainViewModel
 
@@ -44,7 +40,7 @@ class LoadingFragment : Fragment(R.layout.loading_fragment) {
         textView_chosenDataType.text = viewModel.dataType.name
         textView_chosenCase.text = viewModel.case.name
 
-        viewModel.dispatch(batteryMilliAmp, batteryPercent).observe(viewLifecycleOwner, Observer {
+        viewModel.executionStatus.observe(viewLifecycleOwner, Observer {
             it ?: return@Observer
 
             if (it) {
@@ -55,21 +51,33 @@ class LoadingFragment : Fragment(R.layout.loading_fragment) {
         })
 
         button_back.setOnClickListener { onFinish() }
+        startExecution()
     }
 
     private fun handleResult() {
-        val batteryResult = viewModel.startBattery - batteryMilliAmp
-        val batteryPercentResult = viewModel.startBatteryPercent - batteryPercent
-        textView_resultBatteryPercent.text = getString(R.string.loading_result_battery_percent, batteryPercentResult)
-        textView_resultBattery.text = getString(R.string.loading_result_battery, batteryResult)
-        textView_resultSpentTime.text = getString(R.string.loading_result_time, viewModel.ms)
-        resultSection.isVisible = true
-        button_back.isVisible = true
-        loadingBar.isVisible = false
+        val batteryPercentResult = (viewModel.initialBatteryPercent - batteryPercent) / viewModel.executionCount
+
+        if (batteryPercentResult != 0.0f) { // Check if it consumed enough battery
+            textView_resultExecutionCount.text =
+                getString(R.string.loading_result_number_executions, viewModel.executionCount)
+            textView_resultBatteryPercent.text =
+                getString(R.string.loading_result_battery_percent, batteryPercentResult)
+            textView_resultSpentTime.text = getString(R.string.loading_result_time, viewModel.ms)
+            resultSection.isVisible = true
+            button_back.isVisible = true
+            loadingBar.isVisible = false
+        } else {
+            startExecution()
+        }
+    }
+
+    private fun startExecution() {
+        viewModel.dispatch(batteryPercent)
     }
 
     private fun onFinish() {
         try {
+            viewModel.clear()
             activity?.run {
                 supportFragmentManager.beginTransaction()
                     .replace(R.id.container, MainFragment.newInstance())
@@ -79,24 +87,6 @@ class LoadingFragment : Fragment(R.layout.loading_fragment) {
         } catch (t: Throwable) {
             t.printStackTrace()
         }
-    }
-
-    private fun getBatteryCapacity(): Double {
-        val mPowerProfile: Any
-        var batteryCapacity = 0.0
-        val POWER_PROFILE_CLASS = "com.android.internal.os.PowerProfile"
-        try {
-            mPowerProfile = Class.forName(POWER_PROFILE_CLASS)
-                .getConstructor(Context::class.java)
-                .newInstance(activity?.applicationContext)
-            batteryCapacity = Class
-                .forName(POWER_PROFILE_CLASS)
-                .getMethod("getBatteryCapacity")
-                .invoke(mPowerProfile) as Double
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-        return batteryCapacity
     }
 
     companion object {

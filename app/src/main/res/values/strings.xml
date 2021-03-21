@@ -38,9 +38,9 @@
     <string name="loading_chosen_data_type">Data type:</string>
     <string name="loading_chosen_case">Case:</string>
 
-    <string name="loading_result_title">Result</string>
+    <string name="loading_result_title">Result by execution</string>
+    <string name="loading_result_number_executions">Executed %s time(s)</string>
     <string name="loading_result_battery_percent">Consumed battery: %s %%</string>
-    <string name="loading_result_battery">Consumed battery: %s mAh</string>
     <string name="loading_result_time">Spent time: %s ms</string>
 
     <string name="button_back_label">Back</string>
