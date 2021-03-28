@@ -19,7 +19,7 @@ interface AlgorithmExecutorServiceRest {
         @Body body: RequestBody
     ): Call<ResponseBody>
 
-    @GET("execute/selection-sort")
+    @POST("execute/selection-sort")
     fun executeSelectionSort(
         @Body body: RequestBody
     ): Call<ResponseBody>
