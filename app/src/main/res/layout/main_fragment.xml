@@ -1,375 +1,378 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:animateLayoutChanges="true"
-    android:background="?attr/primaryColor"
-    android:padding="16dp"
-    tools:context=".ui.main.MainFragment">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <ScrollView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@id/button_start"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:animateLayoutChanges="true"
+        android:background="?attr/primaryColor"
+        android:padding="16dp"
+        tools:context=".ui.main.MainFragment">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        <ScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@id/button_start"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <!-- Vertical 50% guideline -->
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline_vertical_50p"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_percent=".5" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            <!-- Vertical divider -->
-            <View
-                android:layout_width="1dp"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:background="?attr/primaryLightColor"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="@id/guideline_vertical_50p"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <!-- region Algorithm group -->
-            <RadioGroup
-                android:id="@+id/radioGroup_algorithm"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                app:layout_constraintEnd_toStartOf="@id/guideline_vertical_50p"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <TextView
+                <!-- Vertical 50% guideline -->
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline_vertical_50p"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    android:text="@string/section_algorithm_title"
-                    android:textColor="?attr/primaryTextColor"
-                    android:textSize="16sp" />
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent=".5" />
 
-                <RadioButton
-                    android:id="@+id/radioButton_algorithm_bubble"
-                    android:layout_width="wrap_content"
-                    android:layout_height="18dp"
-                    android:layout_marginBottom="12dp"
-                    android:button="@drawable/custom_radio_button"
-                    android:color="?attr/secondaryColor"
-                    android:gravity="top"
-                    android:text="@string/section_algorithm_option_bubble"
-                    android:textColor="?attr/primaryTextColor"
-                    android:textSize="12sp"
-                    tools:checked="true" />
-
-                <RadioButton
-                    android:id="@+id/radioButton_algorithm_selection"
-                    android:layout_width="wrap_content"
-                    android:layout_height="18dp"
-                    android:layout_marginBottom="12dp"
-                    android:button="@drawable/custom_radio_button"
-                    android:color="?attr/secondaryColor"
-                    android:gravity="top"
-                    android:text="@string/section_algorithm_option_selection"
-                    android:textColor="?attr/primaryTextColor"
-                    android:textSize="12sp"
-                    tools:checked="false" />
-
-                <RadioButton
-                    android:id="@+id/radioButton_algorithm_heap"
-                    android:layout_width="wrap_content"
-                    android:layout_height="18dp"
-                    android:layout_marginBottom="12dp"
-                    android:button="@drawable/custom_radio_button"
-                    android:color="?attr/secondaryColor"
-                    android:gravity="top"
-                    android:text="@string/section_algorithm_option_heap"
-                    android:textColor="?attr/primaryTextColor"
-                    android:textSize="12sp"
-                    tools:checked="false" />
-
-                <!-- Horizontal divider -->
+                <!-- Vertical divider -->
                 <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginEnd="20dp"
-                    android:background="?attr/primaryLightColor" />
-            </RadioGroup>
-            <!-- endregion -->
-
-            <!-- region Method group -->
-            <RadioGroup
-                android:id="@+id/radioGroup_method"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@id/guideline_vertical_50p"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="1dp"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
-                    android:text="@string/section_method_title"
-                    android:textColor="?attr/primaryTextColor"
-                    android:textSize="16sp" />
+                    android:background="?attr/primaryLightColor"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/guideline_vertical_50p"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-                <RadioButton
-                    android:id="@+id/radioButton_method_local"
-                    android:layout_width="wrap_content"
-                    android:layout_height="18dp"
-                    android:layout_marginBottom="12dp"
-                    android:button="@drawable/custom_radio_button"
-                    android:color="?attr/secondaryColor"
-                    android:gravity="top"
-                    android:text="@string/section_method_option_local"
-                    android:textColor="?attr/primaryTextColor"
-                    android:textSize="12sp"
-                    tools:checked="true" />
-
-                <RadioButton
-                    android:id="@+id/radioButton_method_rest"
-                    android:layout_width="wrap_content"
-                    android:layout_height="18dp"
-                    android:layout_marginBottom="12dp"
-                    android:button="@drawable/custom_radio_button"
-                    android:color="?attr/secondaryColor"
-                    android:gravity="top"
-                    android:text="@string/section_method_option_rest"
-                    android:textColor="?attr/primaryTextColor"
-                    android:textSize="12sp"
-                    tools:checked="true" />
-
-                <RadioButton
-                    android:id="@+id/radioButton_method_grpc"
-                    android:layout_width="wrap_content"
-                    android:layout_height="18dp"
-                    android:layout_marginBottom="12dp"
-                    android:button="@drawable/custom_radio_button"
-                    android:color="?attr/secondaryColor"
-                    android:gravity="top"
-                    android:text="@string/section_method_option_grpc"
-                    android:textColor="?attr/primaryTextColor"
-                    android:textSize="12sp"
-                    tools:checked="true" />
-
-                <!-- Horizontal divider -->
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginEnd="4dp"
-                    android:background="?attr/primaryLightColor" />
-            </RadioGroup>
-            <!-- endregion -->
-
-            <!-- region Data amount group -->
-            <RadioGroup
-                android:id="@+id/radioGroup_dataAmount"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                app:layout_constraintEnd_toEndOf="@id/radioGroup_algorithm"
-                app:layout_constraintStart_toStartOf="@id/radioGroup_algorithm"
-                app:layout_constraintTop_toBottomOf="@id/radioGroup_algorithm">
-
-                <TextView
-                    android:layout_width="wrap_content"
+                <!-- region Algorithm group -->
+                <RadioGroup
+                    android:id="@+id/radioGroup_algorithm"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    android:text="@string/section_data_amount_title"
-                    android:textColor="?attr/primaryTextColor"
-                    android:textSize="16sp" />
+                    app:layout_constraintEnd_toStartOf="@id/guideline_vertical_50p"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-                <RadioButton
-                    android:id="@+id/radioButton_amount_10k"
-                    android:layout_width="wrap_content"
-                    android:layout_height="18dp"
-                    android:layout_marginBottom="12dp"
-                    android:button="@drawable/custom_radio_button"
-                    android:color="?attr/secondaryColor"
-                    android:gravity="top"
-                    android:text="@string/section_data_amount_option_10k"
-                    android:textColor="?attr/primaryTextColor"
-                    android:textSize="12sp"
-                    tools:checked="true"
-                    tools:text="10.000" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        android:text="@string/section_algorithm_title"
+                        android:textColor="?attr/primaryTextColor"
+                        android:textSize="16sp" />
 
-                <RadioButton
-                    android:id="@+id/radioButton_amount_50k"
-                    android:layout_width="wrap_content"
-                    android:layout_height="18dp"
-                    android:layout_marginBottom="12dp"
-                    android:button="@drawable/custom_radio_button"
-                    android:color="?attr/secondaryColor"
-                    android:gravity="top"
-                    android:text="@string/section_data_amount_option_50k"
-                    android:textColor="?attr/primaryTextColor"
-                    android:textSize="12sp"
-                    tools:checked="false"
-                    tools:text="50.000" />
+                    <RadioButton
+                        android:id="@+id/radioButton_algorithm_bubble"
+                        android:layout_width="wrap_content"
+                        android:layout_height="18dp"
+                        android:layout_marginBottom="12dp"
+                        android:button="@drawable/custom_radio_button"
+                        android:color="?attr/secondaryColor"
+                        android:gravity="top"
+                        android:text="@string/section_algorithm_option_bubble"
+                        android:textColor="?attr/primaryTextColor"
+                        android:textSize="12sp"
+                        tools:checked="true" />
 
-                <RadioButton
-                    android:id="@+id/radioButton_amount_100k"
-                    android:layout_width="wrap_content"
-                    android:layout_height="18dp"
-                    android:layout_marginBottom="12dp"
-                    android:button="@drawable/custom_radio_button"
-                    android:color="?attr/secondaryColor"
-                    android:gravity="top"
-                    android:text="@string/section_data_amount_option_100k"
-                    android:textColor="?attr/primaryTextColor"
-                    android:textSize="12sp"
-                    tools:checked="false"
-                    tools:text="100.000" />
+                    <RadioButton
+                        android:id="@+id/radioButton_algorithm_selection"
+                        android:layout_width="wrap_content"
+                        android:layout_height="18dp"
+                        android:layout_marginBottom="12dp"
+                        android:button="@drawable/custom_radio_button"
+                        android:color="?attr/secondaryColor"
+                        android:gravity="top"
+                        android:text="@string/section_algorithm_option_selection"
+                        android:textColor="?attr/primaryTextColor"
+                        android:textSize="12sp"
+                        tools:checked="false" />
 
-                <!-- Horizontal divider -->
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginEnd="20dp"
-                    android:background="?attr/primaryLightColor" />
-            </RadioGroup>
-            <!-- endregion -->
+                    <RadioButton
+                        android:id="@+id/radioButton_algorithm_heap"
+                        android:layout_width="wrap_content"
+                        android:layout_height="18dp"
+                        android:layout_marginBottom="12dp"
+                        android:button="@drawable/custom_radio_button"
+                        android:color="?attr/secondaryColor"
+                        android:gravity="top"
+                        android:text="@string/section_algorithm_option_heap"
+                        android:textColor="?attr/primaryTextColor"
+                        android:textSize="12sp"
+                        tools:checked="false" />
 
-            <!-- region Data type group -->
-            <RadioGroup
-                android:id="@+id/radioGroup_dataType"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                app:layout_constraintEnd_toEndOf="@id/radioGroup_method"
-                app:layout_constraintStart_toStartOf="@id/radioGroup_method"
-                app:layout_constraintTop_toBottomOf="@id/radioGroup_method">
+                    <!-- Horizontal divider -->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginEnd="20dp"
+                        android:background="?attr/primaryLightColor" />
+                </RadioGroup>
+                <!-- endregion -->
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <!-- region Method group -->
+                <RadioGroup
+                    android:id="@+id/radioGroup_method"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    android:text="@string/section_data_type_title"
-                    android:textColor="?attr/primaryTextColor"
-                    android:textSize="16sp" />
+                    android:layout_marginStart="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/guideline_vertical_50p"
+                    app:layout_constraintTop_toTopOf="parent">
 
-                <RadioButton
-                    android:id="@+id/radioButton_type_int"
-                    android:layout_width="wrap_content"
-                    android:layout_height="18dp"
-                    android:layout_marginBottom="12dp"
-                    android:button="@drawable/custom_radio_button"
-                    android:color="?attr/secondaryColor"
-                    android:gravity="top"
-                    android:text="@string/section_data_type_option_integer"
-                    android:textColor="?attr/primaryTextColor"
-                    android:textSize="12sp"
-                    tools:checked="true" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        android:text="@string/section_method_title"
+                        android:textColor="?attr/primaryTextColor"
+                        android:textSize="16sp" />
 
-                <RadioButton
-                    android:id="@+id/radioButton_type_float"
-                    android:layout_width="wrap_content"
-                    android:layout_height="18dp"
-                    android:layout_marginBottom="12dp"
-                    android:button="@drawable/custom_radio_button"
-                    android:color="?attr/secondaryColor"
-                    android:gravity="top"
-                    android:text="@string/section_data_type_option_float"
-                    android:textColor="?attr/primaryTextColor"
-                    android:textSize="12sp"
-                    tools:checked="true" />
+                    <RadioButton
+                        android:id="@+id/radioButton_method_local"
+                        android:layout_width="wrap_content"
+                        android:layout_height="18dp"
+                        android:layout_marginBottom="12dp"
+                        android:button="@drawable/custom_radio_button"
+                        android:color="?attr/secondaryColor"
+                        android:gravity="top"
+                        android:text="@string/section_method_option_local"
+                        android:textColor="?attr/primaryTextColor"
+                        android:textSize="12sp"
+                        tools:checked="true" />
 
-                <RadioButton
-                    android:id="@+id/radioButton_type_object"
-                    android:layout_width="wrap_content"
-                    android:layout_height="18dp"
-                    android:layout_marginBottom="12dp"
-                    android:button="@drawable/custom_radio_button"
-                    android:color="?attr/secondaryColor"
-                    android:gravity="top"
-                    android:text="@string/section_data_type_option_object"
-                    android:textColor="?attr/primaryTextColor"
-                    android:textSize="12sp"
-                    tools:checked="true" />
+                    <RadioButton
+                        android:id="@+id/radioButton_method_rest"
+                        android:layout_width="wrap_content"
+                        android:layout_height="18dp"
+                        android:layout_marginBottom="12dp"
+                        android:button="@drawable/custom_radio_button"
+                        android:color="?attr/secondaryColor"
+                        android:gravity="top"
+                        android:text="@string/section_method_option_rest"
+                        android:textColor="?attr/primaryTextColor"
+                        android:textSize="12sp"
+                        tools:checked="true" />
 
-                <!-- Horizontal divider -->
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginEnd="4dp"
-                    android:background="?attr/primaryLightColor" />
-            </RadioGroup>
-            <!-- endregion -->
+                    <RadioButton
+                        android:id="@+id/radioButton_method_grpc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="18dp"
+                        android:layout_marginBottom="12dp"
+                        android:button="@drawable/custom_radio_button"
+                        android:color="?attr/secondaryColor"
+                        android:gravity="top"
+                        android:text="@string/section_method_option_grpc"
+                        android:textColor="?attr/primaryTextColor"
+                        android:textSize="12sp"
+                        tools:checked="true" />
 
-            <!-- region Data amount group -->
-            <RadioGroup
-                android:id="@+id/radioGroup_case"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:layout_marginBottom="16dp"
-                app:layout_constraintEnd_toEndOf="@id/radioGroup_dataAmount"
-                app:layout_constraintStart_toStartOf="@id/radioGroup_dataAmount"
-                app:layout_constraintTop_toBottomOf="@id/radioGroup_dataAmount">
+                    <!-- Horizontal divider -->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginEnd="4dp"
+                        android:background="?attr/primaryLightColor" />
+                </RadioGroup>
+                <!-- endregion -->
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <!-- region Data amount group -->
+                <RadioGroup
+                    android:id="@+id/radioGroup_dataAmount"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    app:layout_constraintEnd_toEndOf="@id/radioGroup_algorithm"
+                    app:layout_constraintStart_toStartOf="@id/radioGroup_algorithm"
+                    app:layout_constraintTop_toBottomOf="@id/radioGroup_algorithm">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        android:text="@string/section_data_amount_title"
+                        android:textColor="?attr/primaryTextColor"
+                        android:textSize="16sp" />
+
+                    <RadioButton
+                        android:id="@+id/radioButton_amount_10k"
+                        android:layout_width="wrap_content"
+                        android:layout_height="18dp"
+                        android:layout_marginBottom="12dp"
+                        android:button="@drawable/custom_radio_button"
+                        android:color="?attr/secondaryColor"
+                        android:gravity="top"
+                        android:text="@string/section_data_amount_option_10k"
+                        android:textColor="?attr/primaryTextColor"
+                        android:textSize="12sp"
+                        tools:checked="true"
+                        tools:text="10.000" />
+
+                    <RadioButton
+                        android:id="@+id/radioButton_amount_50k"
+                        android:layout_width="wrap_content"
+                        android:layout_height="18dp"
+                        android:layout_marginBottom="12dp"
+                        android:button="@drawable/custom_radio_button"
+                        android:color="?attr/secondaryColor"
+                        android:gravity="top"
+                        android:text="@string/section_data_amount_option_50k"
+                        android:textColor="?attr/primaryTextColor"
+                        android:textSize="12sp"
+                        tools:checked="false"
+                        tools:text="50.000" />
+
+                    <RadioButton
+                        android:id="@+id/radioButton_amount_100k"
+                        android:layout_width="wrap_content"
+                        android:layout_height="18dp"
+                        android:layout_marginBottom="12dp"
+                        android:button="@drawable/custom_radio_button"
+                        android:color="?attr/secondaryColor"
+                        android:gravity="top"
+                        android:text="@string/section_data_amount_option_100k"
+                        android:textColor="?attr/primaryTextColor"
+                        android:textSize="12sp"
+                        tools:checked="false"
+                        tools:text="100.000" />
+
+                    <!-- Horizontal divider -->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginEnd="20dp"
+                        android:background="?attr/primaryLightColor" />
+                </RadioGroup>
+                <!-- endregion -->
+
+                <!-- region Data type group -->
+                <RadioGroup
+                    android:id="@+id/radioGroup_dataType"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    app:layout_constraintEnd_toEndOf="@id/radioGroup_method"
+                    app:layout_constraintStart_toStartOf="@id/radioGroup_method"
+                    app:layout_constraintTop_toBottomOf="@id/radioGroup_method">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        android:text="@string/section_data_type_title"
+                        android:textColor="?attr/primaryTextColor"
+                        android:textSize="16sp" />
+
+                    <RadioButton
+                        android:id="@+id/radioButton_type_int"
+                        android:layout_width="wrap_content"
+                        android:layout_height="18dp"
+                        android:layout_marginBottom="12dp"
+                        android:button="@drawable/custom_radio_button"
+                        android:color="?attr/secondaryColor"
+                        android:gravity="top"
+                        android:text="@string/section_data_type_option_integer"
+                        android:textColor="?attr/primaryTextColor"
+                        android:textSize="12sp"
+                        tools:checked="true" />
+
+                    <RadioButton
+                        android:id="@+id/radioButton_type_float"
+                        android:layout_width="wrap_content"
+                        android:layout_height="18dp"
+                        android:layout_marginBottom="12dp"
+                        android:button="@drawable/custom_radio_button"
+                        android:color="?attr/secondaryColor"
+                        android:gravity="top"
+                        android:text="@string/section_data_type_option_float"
+                        android:textColor="?attr/primaryTextColor"
+                        android:textSize="12sp"
+                        tools:checked="true" />
+
+                    <RadioButton
+                        android:id="@+id/radioButton_type_object"
+                        android:layout_width="wrap_content"
+                        android:layout_height="18dp"
+                        android:layout_marginBottom="12dp"
+                        android:button="@drawable/custom_radio_button"
+                        android:color="?attr/secondaryColor"
+                        android:gravity="top"
+                        android:text="@string/section_data_type_option_object"
+                        android:textColor="?attr/primaryTextColor"
+                        android:textSize="12sp"
+                        tools:checked="true" />
+
+                    <!-- Horizontal divider -->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginEnd="4dp"
+                        android:background="?attr/primaryLightColor" />
+                </RadioGroup>
+                <!-- endregion -->
+
+                <!-- region Data amount group -->
+                <RadioGroup
+                    android:id="@+id/radioGroup_case"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
                     android:layout_marginBottom="16dp"
-                    android:text="@string/section_case_title"
-                    android:textColor="?attr/primaryTextColor"
-                    android:textSize="16sp" />
+                    app:layout_constraintEnd_toEndOf="@id/radioGroup_dataAmount"
+                    app:layout_constraintStart_toStartOf="@id/radioGroup_dataAmount"
+                    app:layout_constraintTop_toBottomOf="@id/radioGroup_dataAmount">
 
-                <RadioButton
-                    android:id="@+id/radioButton_case_worst"
-                    android:layout_width="wrap_content"
-                    android:layout_height="18dp"
-                    android:layout_marginBottom="12dp"
-                    android:button="@drawable/custom_radio_button"
-                    android:color="?attr/secondaryColor"
-                    android:gravity="top"
-                    android:text="@string/section_case_option_worst"
-                    android:textColor="?attr/primaryTextColor"
-                    android:textSize="12sp"
-                    tools:checked="true" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        android:text="@string/section_case_title"
+                        android:textColor="?attr/primaryTextColor"
+                        android:textSize="16sp" />
 
-                <RadioButton
-                    android:id="@+id/radioButton_case_best"
-                    android:layout_width="wrap_content"
-                    android:layout_height="18dp"
-                    android:layout_marginBottom="12dp"
-                    android:button="@drawable/custom_radio_button"
-                    android:color="?attr/secondaryColor"
-                    android:gravity="top"
-                    android:text="@string/section_case_option_best"
-                    android:textColor="?attr/primaryTextColor"
-                    android:textSize="12sp"
-                    tools:checked="false" />
-            </RadioGroup>
-            <!-- endregion -->
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+                    <RadioButton
+                        android:id="@+id/radioButton_case_worst"
+                        android:layout_width="wrap_content"
+                        android:layout_height="18dp"
+                        android:layout_marginBottom="12dp"
+                        android:button="@drawable/custom_radio_button"
+                        android:color="?attr/secondaryColor"
+                        android:gravity="top"
+                        android:text="@string/section_case_option_worst"
+                        android:textColor="?attr/primaryTextColor"
+                        android:textSize="12sp"
+                        tools:checked="true" />
 
-    <Button
-        android:id="@+id/button_start"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/custom_button"
-        android:enabled="true"
-        android:text="@string/button_start_label"
-        android:textAllCaps="false"
-        android:textSize="32sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+                    <RadioButton
+                        android:id="@+id/radioButton_case_best"
+                        android:layout_width="wrap_content"
+                        android:layout_height="18dp"
+                        android:layout_marginBottom="12dp"
+                        android:button="@drawable/custom_radio_button"
+                        android:color="?attr/secondaryColor"
+                        android:gravity="top"
+                        android:text="@string/section_case_option_best"
+                        android:textColor="?attr/primaryTextColor"
+                        android:textSize="12sp"
+                        tools:checked="false" />
+                </RadioGroup>
+                <!-- endregion -->
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <Button
+            android:id="@+id/button_start"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/custom_button"
+            android:enabled="true"
+            android:text="@string/button_start_label"
+            android:textAllCaps="false"
+            android:textSize="32sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
